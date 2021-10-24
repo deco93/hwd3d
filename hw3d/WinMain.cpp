@@ -4,10 +4,27 @@
 //meaning of LRESULT also deends in the message we are handling but we dont have to worry about this usually as the last step of our WNDPROC we invoke DefWindowProc
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	/* static WindowsMessageMap mm;
+	OutputDebugString(mm(msg, lParam, wParam).c_str());*/
+
 	switch (msg)
 	{
 		case WM_CLOSE:
 			PostQuitMessage(69);//69 is the return value you want the application to exit with this PostQuitMessage posts a WM_QUIT message on MessageQueue
+			break;
+		case WM_KEYDOWN:
+			if (wParam == 'F')
+			{
+				LPCWSTR NewTitle = L"New Title";
+				SetWindowText(hWnd, NewTitle);
+			}
+			break;
+		case WM_KEYUP:
+			if (wParam == 'F')
+			{
+				LPCWSTR NewTitle = L"Happy Hard Window";
+				SetWindowText(hWnd, NewTitle);
+			}
 			break;
 	}
 	return DefWindowProc(hWnd, msg, wParam, lParam);
