@@ -4,6 +4,7 @@
 //#include <Windows.h>
 #include <string>
 #include <sstream>
+#include "Keyboard.h"
 
 class Window
 {
@@ -54,6 +55,8 @@ private:
 	int width;
 	int height;
 	HWND hWnd;
+public:
+	Keyboard kbd;
 };
 
 #define CHWND_EXCEPT(hr) Window::Exception(__LINE__,__FILE__, hr)
