@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include "Keyboard.h"
+#include "Mouse.h"
 
 class Window
 {
@@ -43,6 +44,8 @@ public:
 	~Window();
 	Window(const Window&) = delete;
 	Window& operator=(const Window&) = delete;
+
+	void SetTitle(const std::string& title);
 private:
 	//v serves as setup to set the pointer to the window instanceon Win32 side
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam,LPARAM lParam) noexcept;
@@ -57,6 +60,7 @@ private:
 	HWND hWnd;
 public:
 	Keyboard kbd;
+	Mouse mouse;
 };
 
 #define CHWND_EXCEPT(hr) Window::Exception(__LINE__,__FILE__, hr)
