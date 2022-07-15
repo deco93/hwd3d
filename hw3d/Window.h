@@ -6,6 +6,7 @@
 #include <sstream>
 #include "Keyboard.h"
 #include "Mouse.h"
+#include <optional>
 
 class Window
 {
@@ -46,6 +47,8 @@ public:
 	Window& operator=(const Window&) = delete;
 
 	void SetTitle(const std::string& title);
+	//its static because it should process messages for more than 1 window if required
+	static std::optional<int> ProcessMessages();
 private:
 	//v serves as setup to set the pointer to the window instanceon Win32 side
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam,LPARAM lParam) noexcept;
